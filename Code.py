@@ -10,7 +10,7 @@ class Code:
 
         Returns, return: One random five letter word.
         """
-        filename = f"Wordle\wordbank_{word_length}.txt"
+        filename = f"wordbank_{word_length}.txt"
         file = open(filename, "r")
         words = file.read()
 
