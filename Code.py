@@ -17,6 +17,7 @@ class Code:
         word_list = words.split("\n")
         random_word = random.choice(word_list)
         return random_word.lower()
+        #return "w" * word_length
 
     def get_code(self, guess): #O(n)
         '''
