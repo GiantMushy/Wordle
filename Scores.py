@@ -23,3 +23,14 @@ class Scores:
         self.highscore = score
         file = open("scores.txt", "w")
         file.write(str(score))
+
+    def get_topten(self):
+        return None
+    
+    def get_user_highscore(self, username):
+        return None
+    
+    def add_score_to_database(self, username):
+        pass
+
+    

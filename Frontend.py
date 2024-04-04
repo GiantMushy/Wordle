@@ -1,15 +1,17 @@
 class PrintFunctions:
-    def __init__(self, word_length):
-        #9 -> 0, 8 -> 0, 7 -> 1, 6 -> 1, 5 -> 2, 4 -> 2, 3 -> 3
-        self.size_of_left_empty_space = (9 - (word_length + (word_length + 1)%2))//2
-        self.size_of_right_empty_space = (self.size_of_left_empty_space + ((word_length + 1)%2))
+    def __init__(self):
+        pass
 
-        
 
     def empty_line(self):
         '''Returns the printable string of an empty line'''
         return "║                                                                          ║" + "\n"
     
+    def get_size_of_empty_space(self, word_length):
+        #9 -> 0, 8 -> 0, 7 -> 1, 6 -> 1, 5 -> 2, 4 -> 2, 3 -> 3
+        self.size_of_left_empty_space = (9 - (word_length + (word_length + 1)%2))//2
+        self.size_of_right_empty_space = (self.size_of_left_empty_space + ((word_length + 1)%2))
+
     def word_to_grid(self, word): #O(idk_lol)
         word_length = len(word)
         ret_string = "║ " + ("        " * self.size_of_left_empty_space)
@@ -19,6 +21,7 @@ class PrintFunctions:
         return ret_string
 
     def row(self, word, code):
+        self.get_size_of_empty_space(len(word))
         word = word.upper()
         ret_string = ""
         ret_string += self.word_to_grid(word.upper()) + "\n"
@@ -57,9 +60,9 @@ class PrintFunctions:
     def logo(self):
         ret_string = "\n"
         ret_string += "▀████▀     █     ▀███▀ ▄▄█▀▀██▄ ▀███▀▀▀██▄ ▀███▀▀▀██▄ ▀████▀   ▀███▀▀▀███" + "\n"
-        ret_string += "  ▀██     ▄██     ▄█ ▄██▀    ▀██▄ ██   ▀██▄  ██    ▀██▄ ██       ██    ▀█ " + "\n"
-        ret_string += "   ██▄   ▄███▄   ▄█  ██▀      ▀██ ██   ▄██   ██     ▀██ ██       ██   █   " + "\n"
-        ret_string += "    ██▄  █▀ ██▄  █▀  ██        ██ ███████    ██      ██ ██       ██████   " + "\n"
+        ret_string += "  ▀██     ▄██     ▄█ ▄██▀    ▀██▄ ██   ▀██▄  ██    ▀██▄ ██       ██    ▀█" + "\n"
+        ret_string += "   ██▄   ▄███▄   ▄█  ██▀      ▀██ ██   ▄██   ██     ▀██ ██       ██   █  " + "\n"
+        ret_string += "    ██▄  █▀ ██▄  █▀  ██        ██ ███████    ██      ██ ██       ██████  " + "\n"
         ret_string += "    ▀██ █▀  ▀██ █▀   ██▄      ▄██ ██  ██▄    ██     ▄██ ██     ▄ ██   █ ▄" + "\n"
         ret_string += "     ▄██▄    ▄██▄    ▀██▄    ▄██▀ ██   ▀██▄  ██    ▄██▀ ██    ▄█ ██    ▄█" + "\n"
         ret_string += "      ██      ██       ▀▀████▀▀ ▄████▄ ▄███▄████████▀ ██████████ ████████" + "\n"
@@ -67,7 +70,7 @@ class PrintFunctions:
 
 if __name__ == "__main__":
     word_length= 3
-    Print = PrintFunctions(word_length)
+    Print = PrintFunctions()
     string = ""
     string += Print.logo()
     string += Print.print_header("Wordl")
