@@ -10,14 +10,14 @@ class Code:
 
         Returns, return: One random five letter word.
         """
-        filename = f"wordbank_{word_length}.txt"
+        filename = f"Wordle\Data\wordbank_{word_length}.txt"
         file = open(filename, "r")
         words = file.read()
 
         word_list = words.split("\n")
         random_word = random.choice(word_list)
-        return random_word.lower()
-        #return "w" * word_length
+        #return random_word.lower()
+        return "w" * word_length
 
     def get_code(self, guess): #O(n)
         '''
@@ -43,9 +43,7 @@ class Code:
                 code += "-"
             elif guess[n] == self.answer[n]:
                 code += "C"
-            else: # guess[n] in self.answer
-                  # compares the counts of letter in answer to count of letter in guess
-                  # prevents guess = "ddddd", answer = "wordl", giving code = "cccCc"
+            else: 
                 if guess_count[guess[n]] > answer_count[guess[n]]:
                     guess_count[guess[n]] -= 1
                     code += "-"

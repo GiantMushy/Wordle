@@ -1,5 +1,3 @@
-
-
 class Node:
     def __init__(self, word = None, code = None, next = None, prev = None):
         self.word = word

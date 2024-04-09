@@ -1,10 +1,10 @@
 # Wordl - written by: 
 # Þorvarður Helgi Bjarnason | 0410992919 | thorvardur23@ru.is
 
-from DLL import *
-from Code import Code
-from Frontend import PrintFunctions
-from Scores import Scores
+from Data.DLL import *
+from Logic.Code import Code
+from Ui.PrintFunctions import PrintFunctions
+#from Logic.Scores import Scores
 
 class Wordle:
     '''Run this file to play the game'''
@@ -37,13 +37,14 @@ class Wordle:
         if self.Scores.current_score == -1:
             ret_string += self.Print.print_header("Wordle")
         else:
-            ret_string += self.Print.print_header(f"Highscore: {self.Scores.highscore}   |   Current Score: {self.Scores.current_score}")
+            ret_string += self.Print.print_header(f"Highscore: {self.Scores.highscore["username"]}: {self.Scores.highscore["score"]}   |   Current Score: {self.Scores.current_score}")
         ret_string += self.Print.empty_line()
 
         node = self.Dll.front.next
         for _ in range(self.Dll.size):
             ret_string += self.Print.row(node.word, node.code)
             node = node.next
+
         for n in range(self.num_of_guesses - self.Dll.size):
             ret_string += self.Print.empty_row(self.word_length)
         ret_string += self.Print.empty_line()
@@ -68,6 +69,7 @@ class Wordle:
 
                     if self.Scores.current_score != -1:
                         self.Scores.add_score(((self.word_length * 3) // (self.Dll.size + 1)) * 100)
+                        self.Scores.update_database()
 
                     self.Dll.append(guess, code)
                     print(self)
